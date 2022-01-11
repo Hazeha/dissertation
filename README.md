@@ -3,15 +3,20 @@
 
 ## Preview
 
-Preview the example live on [Here](http://google.com/):
+Preview the example live on [Here](https://d17ob0npapdlr1.cloudfront.net/):
 
-[![Open]](https://google.com/)
+[![Open]](https://d17ob0npapdlr1.cloudfront.net/)
 
-## Hot to test
+Or https://d17ob0npapdlr1.cloudfront.net/
 
-## How to use
+To install project run:
+npm i
+***
 
-To run development environment
-```bash
-yarn dev
-```
+To configure amplify run:
+amplify configure
+***
+
+To host as serverless run:
+npx serverless
+***
