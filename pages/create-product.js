@@ -9,7 +9,7 @@ import SimpleMDE from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
 import { createProduct } from '../src/graphql/mutations'
 
-const initialState = { name: '', discription: '', price: 0 }
+const initialState = { name: '', discription: ''}
 
 function CreateProduct() {
   const [product, setProduct] = useState(initialState)
@@ -38,6 +38,7 @@ function CreateProduct() {
     })
     router.push(`/products/${id}`)
   }
+  
   async function uploadImage() {
     hiddenFileInput.current.click();
   }
@@ -47,40 +48,55 @@ function CreateProduct() {
     setImage(fileUploaded)
   }
   return (
-    <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-50 max-w-md">
-      <h1 className="text-3xl font-semibold tracking-wide mt-6">Nyt Opslag</h1>
+    <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl sm:w-full md:w-4/5 lg:w-4/5 mx-auto my-4">
+      <h1 className="text-3xl font-semibold tracking-wide mt-6">{product.name ? product.name : 'Nyt Opslag'}</h1>
       <input
         onChange={onChange}
         name="name"
         placeholder="Titel"
         value={product.name}
         className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
-      /> 
-      {
-        image && (
-          <img src={URL.createObjectURL(image)} className="my-4" alt="product image"/>
-        )
-      }
+      />
+      <input
+        onChange={onChange}
+        name="category"
+        placeholder="Kategori"
+        value={product.category}
+        className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
+      />  
+      <input
+        onChange={onChange}
+        name="price"
+        placeholder="Pris/dag"
+        value={product.price}
+        type="number"
+        className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
+      />
       <SimpleMDE value={product.discription} onChange={value => setProduct({ ...product, discription: value })} />
+      
+
+  <button className="relative w-1/5 mb-3 cursor-pointer" onClick={uploadImage}>
+      <div className="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-40 duration-300">
+          <div className="mx-auto">
+          <div className=" text-gray-800 font-semibold mt-1 py-1 px-4 w-full cursor-pointer">Upload Billede</div>
+          </div>
+      </div>
+      <div className="h-full flex flex-wrap content-center">
+      {
+            image ? <img src={URL.createObjectURL(image)} className="my-4" alt="product image"/> : 
+            <img className="inset-0 w-full hover:opacity-30 block h-auto ease-in-out" src="https://www.glasmontoren.dk/wp-content/uploads/2016/09/ef3-placeholder-image.jpg" alt="" />
+        }
+      </div>
+  </button>
+      
+      
       <input
         type="file"
         ref={hiddenFileInput}
         className="absolute w-0 h-0"
         onChange={handleChange}
       />
-      <input
-        onChange={onChange}
-        name="price"
-        placeholder="Pris/dag"
-        value={product.price}
-        className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
-      />
-      <button
-        className="bg-white border-2 font-semibold px-8 py-2 rounded-lg mr-2" 
-        onClick={uploadImage}        
-      >
-        Upload Cover Image
-      </button>
+      
       <button
         type="button"
         className="mb-4 bg-white font-semibold px-8 py-2 rounded-lg border-2"

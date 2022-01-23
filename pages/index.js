@@ -1,4 +1,4 @@
-import GetProductCard from '../src/components/productComponent'
+import GetRecentProducts from '../src/components/productRecent'
 import {RiSearch2Line} from 'react-icons/ri'
 import {BiMapPin} from 'react-icons/bi'
 import {BsCalendarDate} from 'react-icons/bs'
@@ -42,7 +42,7 @@ export default function Home() {
       <Categories />
       <section>
       {
-        GetProductCard()
+        <GetRecentProducts />
       }
       </section>
       {

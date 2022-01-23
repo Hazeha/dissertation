@@ -10,6 +10,7 @@ export const getUser = /* GraphQL */ `
       firstname
       lastname
       verified
+      profileimage
       location
       createdAt
       updatedAt
@@ -30,6 +31,7 @@ export const listUsers = /* GraphQL */ `
         firstname
         lastname
         verified
+        profileimage
         location
         createdAt
         updatedAt

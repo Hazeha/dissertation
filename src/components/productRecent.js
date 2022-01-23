@@ -9,7 +9,7 @@ import { GiSandsOfTime } from 'react-icons/gi'
 import { MdFreeCancellation } from 'react-icons/md'
 import {CgProfile} from 'react-icons/cg'
 
-export default function GetAllProducts() {
+export default function GetRecentProducts() {
   const [posts, setPosts] = useState([])
   useEffect(() => {
     fetchProducts()
@@ -26,13 +26,13 @@ export default function GetAllProducts() {
       }
       return item
     }))
-    setPosts(postsWithImages)
+    setPosts(postsWithImages.slice(0,6))
   }
   
   return (
     <div className="container mx-auto">
       
-    <h1 className="text-3xl pl-4 font-semibold">Alle produkter</h1>
+    <h1 className="text-3xl font-light">Nylige opdaterede opslag</h1>
     <div className="flex flex-wrap mx-4">
     
       {
@@ -71,7 +71,13 @@ export default function GetAllProducts() {
       ))
     }
     </div>
-    
+    <div  className="w-full flex justify-center mt-2">
+      <Link href="/products" >
+        <button className="border-yellow-400 border-2 rounded py-2 px-7 mr-2 mb-2 cursor-pointer hover:bg-yellow-400">
+          Se alle produkter
+        </button>
+      </Link>
+    </div>
     
     </div>
   )
